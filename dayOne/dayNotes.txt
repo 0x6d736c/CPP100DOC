@@ -1,0 +1,98 @@
+#100DaysOfCode, Day 001/100*
+
+Introductory C++
+
+These first few days will be uneventful as I'm working through Bjarne Stroustrop's "A Tour of C++" to get a grasp of the language. But I'm hoping these posts will be moderately educational.
+
+Today's lesson focuses on user-defined types: structs and classes.
+
+//Structs
+
+Structs in C++ are a user-defined type representing custom data structures.
+Imagine a custom-built struct as a preforated cardboard box. It has a pre-defined shape, but you can add contents to it within those shape parameters/so long as your "stuff" fits inside of the box.
+Each box can have its own unique contents, as long as they all fit within the box!
+
+Structs allow you to define that preforation -- what the box can contain -- and then allow you to assemble multiple boxes full of related-but-not-identical contents.
+
+The book's lessons focus primarily on "Vectors" which, for some, may be a useful abstraction/example. But perhaps a simpler example is to use a familiar, tangible object: the car.
+
+struct Car {
+    int model_year;
+    double miles_per_gallon;
+};
+
+We can get into strings/character arrays at a later date, but this should do for now.
+
+In this example, we have a Car struct with member variables "model_year" and "miles_per_gallon" of type int and double, respectively.
+
+With this data structure blueprint defined, we can now construct multiple different Cars, each with their own unique data, but within the pre-defined parameters of the Car structure.
+
+Let's imagine we have three cars: X, Y, and Z. All are different models/brands/etc.
+
+We can declare that we have these three Cars as follows:
+
+Car x;
+Car y;
+Car z;
+
+And for each individual Car type, we can provide unique information:
+
+x.miles_per_gallon = 33.3;
+x.model_year = 2022;
+
+y.miles_per_gallon = 15.2;
+y.model_year = 2010;
+
+z.miles_per_gallon = 5.0;
+z.model_year = 1925;
+
+These Car structs are based upon similar blueprints, but take upon lives of their own after declaration and definition of their data.
+
+//Classes
+
+Classes are closely-related to Structs, but provide programmers with a more tight-knit control of the underlying representation. For example,
+our Car struct provides us with the ability to define unique attributes and bundle it as one "unit" -- a Car.
+
+Classes allow us to the same. We can define member variables, just as we do with Structs, but we can also abstract-away important data from other programmers/
+users, provide type-centric functions, and inner security by allowing only certain member variables to be manipulated from within the class.
+
+If you have little prior programming exposure, this can all sound really confusing. Let's work through another example using our beloved Car.
+
+Recall that our Car struct had two data fields, a double of miles_per_gallon, and an int of model_year. But what if we wanted to make this Car a bit more concrete, and less of just a data storage unit? We'll use a class!
+
+We create a class as follows:
+
+class Car {
+    public:
+        Car(double mpg, int myear) {
+            miles_per_gallon = mpg;
+            model_year = myear;
+        }
+
+    private:
+        double miles_per_gallon;
+        int model_year;
+};
+
+The Car(double mpg, int myear) declaration in the public sphere of our class is called a Constructor,
+which allows us to build a unique Car object with those specified parameters.
+
+For comparisons sake, we define new Car objects as follows:
+
+Car x = Car(33.3, 2022);
+Car y = Car(15.2, 2010);
+Car z = Car(5.0, 1925);
+
+This will work similarly to our Car struct, but with a caveat. Using the "private" keyword, followed by the member data (MPG/model year) beneath it,
+we now prevent other programmers from directly accessing the data. Whereas in our Struct example, we could directly modify a Car's
+values, in this Car class example, we can only set the miles per gallon and model year variables upon initialization of the unique Car object we create from the class blueprint.
+
+If we were to try to modify the model year or miles per gallon, our compiler would (rightfully!) give us an error.
+
+Imagine we have a Car with a model year of 2020. It wouldn't make sense for us to change the year after the Car is "produced," would it?
+Data encapsulation, the separation of data into private/public fields which can only be accessed with special permission, allows us to avoid these quirky cases, and provides us with much safer types in the long run.
+
+Both Structs and Classes allow for "blueprinting" unique types. We can build a Car struct or a Car class with their own unique member data defined within the parameters of the struct/class. The main difference to remember
+is that classes provide programmers with the ability to encapsulate specific data and prevent direct manipulation.
+
+*Technically this is day 1.5, as I'd read over the first chapter last night, but🤫

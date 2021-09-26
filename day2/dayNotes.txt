@@ -1,0 +1,51 @@
+#100DaysOfCode, Day 002/100*
+
+Introductory C++: Unions and Enumerations
+
+//Unions
+Unions are similar to structs in that they allow the programmer to design a custom data type. 
+However, a Union only holds one of the member data types at any given time, and only occupies the space of the largest type within it, not the cumulative space like a Struct would.
+For example, if a Union had three member fields, one int, one char, and one double, like below:
+
+union Example {
+    int number;
+    char letter;
+    double bigger_number;
+};
+
+The Union would only occupy a total of sizeof(double) space in memory. The downside of this memory-conscious approach is that the programmer
+needs to determine which member field is being used before operating on the consituent data.
+
+Microsoft's C++ documentation provides a solution to this. By enclosing the Union inside of a struct,
+and using an Enumeration (explained below!) to act as a type determinant, we can utilize the Union
+to great effect.
+
+https://docs.microsoft.com/en-us/cpp/cpp/unions?view=msvc-160
+
+//Enumerations
+Enumerations (also called enums) can be thought of us simplified, named types that can be, well, enumerated. Under the hood,
+these Enums are represented as simple integers, and they come in two flavors.
+
+1. The Classic or Plain Enum
+
+These are the less-safe version of the Enumerator user-defined type, but they directly convert
+to their integer equivalents without any additional effort from the programmer.
+
+enum Rank {
+    first,
+    second,
+    third
+};
+
+Each of these (first, second, third) can be directly referenced as integers (0, 1, 2). 
+
+first < second; //each of these evaluates to True
+second == 1;    
+third > 1;
+
+2. Scoped/Class-Based Enumerators
+These are safer, but less versatile. You have to decide which you'd prefer to use!
+Scoped Enumerators are tied to their types. For example, if we have a scoped Enumerator, Color, with colors
+red, green, and blue, and a separate Scoped Enumerator, 
+
+
